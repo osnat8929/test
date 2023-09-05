@@ -1,0 +1,9 @@
+<div style="display: flex;flex-direction: row-reverse;">
+    <div style="display: flex;flex-direction: column;align-items: flex-end;gap: 20px;position: fixed;">
+        <div (click)="theCategory(count.category)" *ngFor="let count of categoryCounts">
+            {{ count.category }} - {{ count.quantity }}
+        </div>
+    </div>
+    <app-table [productsList]="productsList" [countByCategory]="countByCategory" [category]="category"
+        style="width: 80%;margin-right: 200px;"></app-table>
+</div>

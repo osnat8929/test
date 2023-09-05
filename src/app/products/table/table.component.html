@@ -1,0 +1,79 @@
+<button (click)="sortByPrice()" style="position: fixed;width: 80%">
+  sort by price
+</button>
+<table style="margin-top: 50px;">
+  <thead>
+    <tr>
+      <th scope="col" *ngFor="let productProperty of productProperties">{{ productProperty }}</th>
+      <th scope="col">edit</th>
+      <th scope="col">delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of currentPageData">
+      <td *ngFor="let productProperty of productProperties">{{product[productProperty]}}</td>
+      <td>
+        <button (click)="editProduct(product)">edit</button></td>
+      <td><button (click)="deleteProduct(product)">delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination" style="justify-content: space-evenly;">
+  <!-- Display pagination controls -->
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <button *ngFor="let page of totalPages()" (click)="goToPage(page)" [disabled]="currentPage === page">{{page}}</button>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages()">Next</button>
+</div>
+<br>
+<div style="display: flex;justify-content: center;">
+  <button (click)="addProduct()">add product</button>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close" (click)="close()">&times;</span>
+    <form [formGroup]="productForm" name="productForm" style="display: flex;
+    flex-direction: column;" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>id</mat-label>
+        <input matInput formControlName="id" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>name</mat-label>
+        <input matInput formControlName="name" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>description</mat-label>
+        <input matInput formControlName="description" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>features</mat-label>
+        <input matInput formControlName="features" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>price</mat-label>
+        <input matInput formControlName="price" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>keywords</mat-label>
+        <input matInput formControlName="keywords" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>url</mat-label>
+        <input matInput formControlName="url" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>category</mat-label>
+        <input matInput formControlName="category" type="text">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>subcategory</mat-label>
+        <input matInput formControlName="subcategory" type="text">
+      </mat-form-field>
+      <button type="submit">Ok</button>
+    </form>
+  </div>
+</div>
